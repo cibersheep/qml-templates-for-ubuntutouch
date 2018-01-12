@@ -1,3 +1,6 @@
+# About Template
+![sample](sample.png)
+
 Use:
 - Copy `About.qml` and `ListItemHeader.qml` to the same folder
 - Modify the top properties of About.qml
