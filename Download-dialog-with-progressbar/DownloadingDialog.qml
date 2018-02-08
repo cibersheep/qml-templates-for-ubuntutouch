@@ -26,7 +26,7 @@ import DownloadInterceptor 1.0
 Dialog {
     id: downloadDialog
     property Page page
-    property string dialogTitle i18n.tr("") 			// Title of the dialog
+    property string dialogTitle: i18n.tr("") 			// Title of the dialog
     property string descriptionPrepend: i18n.tr("") 	// Explanation (under title)
     
     title: dialogTitle
@@ -49,9 +49,10 @@ Dialog {
     
     Button {
 		id: cancelButton
-		visible: false
-        text: i18n.tr("Close")
+		visible: true
+        text: i18n.tr("Cancel")
         onClicked: {
+			cancelButton.text === i18n.tr("Close") ? console.log("We had an error. No need to abort") : console.log("Abort"); DownloadInterceptor.abort();
             console.log("Closing popup")
             PopupUtils.close(downloadDialog)
         }
@@ -66,8 +67,10 @@ Dialog {
 		
 		onFail: {
 			//Something went wrong and the `message` argument will tell you what it was.
+			
 			console.log("Error: " + message)
 			cancelButton.visible = true
+			cancelButton.text = i18n.tr("Close")
 			downloadDialog.text = message
 		}
 	}
